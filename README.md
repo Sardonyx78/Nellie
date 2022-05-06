@@ -27,3 +27,4 @@ A community based open source bot for the Heartstopper discord server
 
 - Node v16 or above
 - TypeScript 4.7.0 or above
+- 
