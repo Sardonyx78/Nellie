@@ -1,0 +1,1 @@
+export const Config: TConfig = process.env.NODE_ENV === "development" ? require("../config-dev.json") : require("../config.json")
