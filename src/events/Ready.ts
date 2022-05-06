@@ -7,11 +7,12 @@ import { DiscordEvent } from "../Structures/DiscordEvent";
 import { Localization } from "../Structures/SlashCommand";
 
 const ReadyEvent = new DiscordEvent("ready")
-const rest = new REST({ version: '9' }).setToken(client.token);
 
 ReadyEvent.handle = async () => {
      console.log("Ready!")
      client.guild = client.guilds.cache.first()
+
+     const rest = new REST({ version: "9" }).setToken(client.token)
 
      const commandsList = await rest.get(Routes.applicationGuildCommands(client.user.id, client.guild.id)) as (ChatInputApplicationCommandData & { description_localizations?: Localization, id: string })[]
      const commands: Record<string, ChatInputApplicationCommandData & { description_localizations?: Localization, id: string }> = {}

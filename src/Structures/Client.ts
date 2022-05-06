@@ -18,5 +18,3 @@ export const client = new Client({ intents: intents }) as Client & {
 client.interactions = new Collection()
 client.commands = new Collection()
 client.modals = new Collection()
-
-client.login(process.env.TOKEN)

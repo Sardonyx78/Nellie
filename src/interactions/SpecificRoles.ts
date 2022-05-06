@@ -1,10 +1,6 @@
 import { GuildMember, MessageSelectMenu, SelectMenuInteraction } from "discord.js";
-import AboutMeEditModal from "../modals/AboutMeEdit";
-import { client } from "../Structures/Client";
 import { Config } from "../Structures/Config";
 import { InteractionApp } from "../Structures/InteractionApp";
-import { MessageModal, MessageModalInput } from "../Structures/MessageModal";
-
 const SpecificRolesInteraction = new InteractionApp<SelectMenuInteraction<"present">>("SpecificRolesInteraction")
 
 SpecificRolesInteraction.handle = (interaction) => {

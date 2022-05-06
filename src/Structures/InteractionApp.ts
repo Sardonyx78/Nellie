@@ -1,4 +1,4 @@
-import { Interaction, Collection, BaseMessageComponent, MessageButton, MessageActionRow, MessageSelectMenu, SelectMenuInteraction } from "discord.js"
+import { Interaction, MessageButton, MessageSelectMenu, SelectMenuInteraction } from "discord.js"
 
 export class InteractionApp<T extends Interaction> {
      typeName: string
@@ -11,9 +11,7 @@ export class InteractionApp<T extends Interaction> {
           this.type = type
      }
 
-     handle(interaction: T) {
-
-     }
+     handle: (interaction: T) => void
 
      get createInstance(): () => T extends SelectMenuInteraction ? MessageSelectMenu : MessageButton {
           return () => this.__createInstance().setCustomId(this.typeName)

@@ -1,4 +1,4 @@
-import { GuildMember, MessageComponentInteraction } from "discord.js";
+import { MessageComponentInteraction } from "discord.js";
 import { client } from "./Client";
 
 export enum MessageModalInputStyle {
@@ -10,7 +10,7 @@ export class MessageModalInput {
      label: string
      placeholder?: string
      customId?: string
-     required: boolean = false
+     required = false
      minLength?: number
      maxLength?: number
      value?: string
@@ -56,7 +56,7 @@ export class MessageModalInput {
           return this
      }
 
-     serialize() {
+     serialize(value?: string) {
           return {
                type: 4,
                custom_id: this.customId,
@@ -65,13 +65,13 @@ export class MessageModalInput {
                min_length: this.minLength,
                max_length: this.maxLength,
                required: this.required,
-               value: this.value,
+               value: value || this.value,
                placeholder: this.placeholder
           }
      }
 }
 
-export class MessageModal {
+export class MessageModal<T extends ReadonlyArray<string> = []> {
      title: string
      inputs: MessageModalInput[] = []
      custom_id?: string
@@ -90,7 +90,7 @@ export class MessageModal {
           return this
      }
 
-     async send(interaction: MessageComponentInteraction) {
+     async send(interaction: any, prefilledInfo: Record<string, string> = {}) {
           await (<any>client).api.interactions(interaction.id, interaction.token).callback.post({
                data: {
                     type: 9,
@@ -98,7 +98,7 @@ export class MessageModal {
                          title: this.title,
                          custom_id: this.custom_id,
                          components: [{
-                              components: this.inputs.map(x => x.serialize()),
+                              components: this.inputs.map(x => x.serialize(prefilledInfo[x.customId])),
                               type: 1
                          }]
                     }
@@ -107,5 +107,5 @@ export class MessageModal {
           });
      }
 
-     handle(components: Record<string, string>, interaction: MessageComponentInteraction) {}
+     handle: (components: { [K in keyof T]: string }, interaction: MessageComponentInteraction) => void
 }

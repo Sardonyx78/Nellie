@@ -1,5 +1,5 @@
 import { APIChannel, APIGuildMember, APIRole } from "discord-api-types/v9"
-import _, { xor } from "lodash"
+import _ from "lodash"
 import { CommandInteraction, ApplicationCommandOption, User, GuildChannel, ThreadChannel, Role, GuildMember, ChatInputApplicationCommandData } from "discord.js"
 
 interface ITypes {
@@ -27,7 +27,7 @@ export class SlashCommand<TArgs extends ReadonlyArray<ApplicationCommandOption>>
      description_localization?: Localization
      arguments: TArgs
 
-     static readonly NiceArgumentNames = { "SUB_COMMAND_GROUP": "Subcommandgroup", "SUB_COMMAND": "Subcommand", "STRING": "String", "INTEGER": "Integer", "BOOLEAN": "Boolean", "USER": "User", "CHANNEL": "Channel", "ROLE": "Role", "MENTIONABLE": "Mentionable", "NUMBER": "Number" } as const
+     static readonly NiceArgumentNames = { "SUB_COMMAND": "Subcommand", "SUB_COMMAND_GROUP": "Subcommandgroup", "STRING": "String", "INTEGER": "Integer", "BOOLEAN": "Boolean", "USER": "User", "CHANNEL": "Channel", "ROLE": "Role", "MENTIONABLE": "Mentionable", "NUMBER": "Number" } as const
 
      constructor(name: string, description: { value: string, localization?: Localization }, args: TArgs) {
           this.name = name
@@ -36,7 +36,7 @@ export class SlashCommand<TArgs extends ReadonlyArray<ApplicationCommandOption>>
           this.description_localization = description.localization
      }
 
-     execute(args: GetArgTypes<TArgs>, interaction: CommandInteraction) { }
+     execute: (args: GetArgTypes<TArgs>, interaction: CommandInteraction) => void
 
      serialize(): any {
           return {
@@ -44,7 +44,7 @@ export class SlashCommand<TArgs extends ReadonlyArray<ApplicationCommandOption>>
                description: this.description,
                description_localization: this.description_localization,
                //TODO: Bad coding needs fix
-               options: this.arguments.map(x => ({...x, type: Object.keys(SlashCommand.NiceArgumentNames).findIndex(y => x.type === y) })),
+               options: this.arguments.map(x => ({...x, type: Object.keys(SlashCommand.NiceArgumentNames).findIndex(y => x.type === y) + 1 })),
                type: 1, // CHAT_INPUT
                default_member_permissions: true
           }

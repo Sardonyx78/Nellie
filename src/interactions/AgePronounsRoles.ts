@@ -1,5 +1,4 @@
 import { GuildMember, MessageSelectMenu, SelectMenuInteraction } from "discord.js";
-import { client } from "../Structures/Client";
 import { Config } from "../Structures/Config";
 import { InteractionApp } from "../Structures/InteractionApp";
 

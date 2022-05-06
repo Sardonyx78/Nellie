@@ -7,7 +7,5 @@ export class DiscordEvent<E extends keyof ClientEvents> {
           this.eventName = eventName
      }
 
-     handle(...args: ClientEvents[E]) {
-
-     }
+     handle: (...args: ClientEvents[E]) => void
 }
