@@ -4,7 +4,7 @@
   "description": "Nellie Bot for the Heartstopper Discord",
   "main": "dist/index.js",
   "author": "Heartstopper community",
-  "license": "MIT",
+  "license": "GNU GPLv3",
   "private": false,
   "devDependencies": {
     "@types/lodash": "^4.14.182",
