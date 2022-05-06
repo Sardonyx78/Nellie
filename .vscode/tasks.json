@@ -1,0 +1,21 @@
+{
+     "version": "2.0.0",
+     "tasks": [
+          {
+               "type": "shell",
+               "label": "Clean Dist",
+               "command": "Remove-item",
+               "args": [
+                    "./dist",
+                    "-recurse"
+               ]
+          },
+          {
+               "label": "Clean Build",
+               "dependsOn": [
+                    "Clean Dist",
+                    "tsc: build - tsconfig.json"
+               ]
+          }
+     ]
+}
