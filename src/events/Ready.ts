@@ -2,9 +2,9 @@ import { REST } from "@discordjs/rest";
 import { Routes } from "discord-api-types/v9";
 import { ChatInputApplicationCommandData } from "discord.js";
 import _ from "lodash";
-import { client } from "../Structures/Client";
-import { DiscordEvent } from "../Structures/DiscordEvent";
-import { Localization } from "../Structures/SlashCommand";
+import { client } from "../structures/Client";
+import { DiscordEvent } from "../structures/DiscordEvent";
+import { Localization } from "../structures/SlashCommand";
 
 const ReadyEvent = new DiscordEvent("ready")
 
@@ -25,6 +25,12 @@ ReadyEvent.handle = async () => {
      const checked: string[] = []
 
      client.commands.forEach(x => {
+          updateData.push(x.serialize())
+
+          if (commands[x.name]) checked.push(x.name)
+     })
+
+     client.contexts.user.forEach(x => {
           updateData.push(x.serialize())
 
           if (commands[x.name]) checked.push(x.name)

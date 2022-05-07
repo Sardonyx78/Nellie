@@ -1,6 +1,6 @@
 import { APIChannel, APIGuildMember, APIRole } from "discord-api-types/v9"
 import _ from "lodash"
-import { CommandInteraction, ApplicationCommandOption, User, GuildChannel, ThreadChannel, Role, GuildMember, ChatInputApplicationCommandData } from "discord.js"
+import { CommandInteraction, ApplicationCommandOption, User, GuildChannel, ThreadChannel, Role, GuildMember, ChatInputApplicationCommandData, PermissionResolvable, Permissions } from "discord.js"
 
 interface ITypes {
      "SUB_COMMAND_GROUP": string
@@ -26,6 +26,7 @@ export class SlashCommand<TArgs extends ReadonlyArray<ApplicationCommandOption>>
      description: string
      description_localization?: Localization
      arguments: TArgs
+     permissions?: PermissionResolvable
 
      static readonly NiceArgumentNames = { "SUB_COMMAND": "Subcommand", "SUB_COMMAND_GROUP": "Subcommandgroup", "STRING": "String", "INTEGER": "Integer", "BOOLEAN": "Boolean", "USER": "User", "CHANNEL": "Channel", "ROLE": "Role", "MENTIONABLE": "Mentionable", "NUMBER": "Number" } as const
 
@@ -46,7 +47,7 @@ export class SlashCommand<TArgs extends ReadonlyArray<ApplicationCommandOption>>
                //TODO: Bad coding needs fix
                options: this.arguments.map(x => ({...x, type: Object.keys(SlashCommand.NiceArgumentNames).findIndex(y => x.type === y) + 1 })),
                type: 1, // CHAT_INPUT
-               default_member_permissions: true
+               default_member_permissions: this.permissions && Permissions.resolve(this.permissions).toString()
           }
      }
 
