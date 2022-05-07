@@ -1,6 +1,6 @@
-import { MessageComponentInteraction } from "discord.js";
-import { client } from "../Structures/Client";
-import { DiscordEvent } from "../Structures/DiscordEvent";
+import { client } from "../structures/Client";
+import { DiscordEvent } from "../structures/DiscordEvent";
+import { ModalSubmitInteraction } from "../structures/ModalSubmitInteraction";
 
 const Raw = new DiscordEvent("raw" as any)
 
@@ -11,11 +11,12 @@ Raw.handle = async ({ d, t }) => {
 
           const args: Record<string, string> = {}
 
-          for (const obj of d.data.components[0].components) {
+          for (const comp of d.data.components) {
+               const obj = comp.components[0]
                args[obj.custom_id] = obj.value
           }
 
-          cmd.handle(args, new (<any>MessageComponentInteraction)(client, d))
+          cmd.handle(args, new ModalSubmitInteraction(client, d))
      }
 }
 

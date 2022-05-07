@@ -1,6 +1,6 @@
-import { client } from "../Structures/Client";
-import { DiscordEvent } from "../Structures/DiscordEvent";
-import { SlashCommand } from "../Structures/SlashCommand";
+import { client } from "../structures/Client";
+import { DiscordEvent } from "../structures/DiscordEvent";
+import { SlashCommand } from "../structures/SlashCommand";
 
 const InteractionCreate = new DiscordEvent("interactionCreate")
 
@@ -16,8 +16,8 @@ InteractionCreate.handle = (interaction) => {
           })
 
           command.execute(args, interaction)
-     } else if (interaction.isUserContextMenu() || interaction.isMessageContextMenu()) {
-          client.interactions.get(interaction.commandName)?.handle(interaction)
+     } else if (interaction.isUserContextMenu()) {
+          client.contexts.user.get(interaction.commandName)?.handle(interaction)
      }
      /**
       * `customId` only exists on Button Interactions and etc. 
@@ -27,7 +27,7 @@ InteractionCreate.handle = (interaction) => {
      //@ts-expect-error `customId` only exists on Button Interactions
      else if (interaction.customId) {
           //@ts-expect-error `customId` only exists on Button Interactions
-          client.interactions.get(interaction.customId)?.handle(interaction)
+          client.interactions.get(interaction.customId.split("-")[0])?.handle(interaction)
      }
 }
 
