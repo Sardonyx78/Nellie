@@ -1,6 +1,5 @@
 import { GuildMember, MessageActionRow, MessageButton, MessageComponentInteraction, MessageEmbed } from "discord.js";
 import { MessageButtonStyles } from "discord.js/typings/enums";
-import { client } from "../structures/Client";
 import { InteractionApp } from "../structures/InteractionApp";
 import SpecificRolesInteraction from "./SpecificRoles";
 
@@ -28,13 +27,11 @@ export const agePronounsRolesMessage = {
 }
 
 SummonAgePronounsRolesInteraction.handle = async (interaction) => {
-     await interaction.reply({
+     interaction.reply({
           components: SpecificRolesInteraction.createInstance(interaction.member as GuildMember),
           nonce: interaction.id,
           ...agePronounsRolesMessage,
           fetchReply: true
-     }).then(x => {
-          client.interactionCache.set(x.id, interaction)
      })
 }
 

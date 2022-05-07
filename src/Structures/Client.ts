@@ -1,4 +1,4 @@
-import { Intents, Client, Guild, Collection, Interaction } from "discord.js"
+import { Intents, Client, Guild, Collection } from "discord.js"
 import { InteractionApp } from "./InteractionApp"
 import { MessageModal } from "./MessageModal"
 import { SlashCommand } from "./SlashCommand"
@@ -15,8 +15,7 @@ export const client = new Client({ intents: intents }) as Client & {
      modals: Collection<string, MessageModal<any>>,
      contexts: {
           user: Collection<string, UserContextCommand>
-     },
-     interactionCache: Collection<string, Interaction>
+     }
 }
 
 // Declare the interactions and commands collection
@@ -26,4 +25,3 @@ client.modals = new Collection()
 client.contexts = {
      user: new Collection()
 }
-client.interactionCache = new Collection()
