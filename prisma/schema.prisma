@@ -1,0 +1,10 @@
+datasource db {
+     provider = "mysql"
+     url = env("DATABASE_URL")
+}
+
+model AboutMe {
+     userId BigInt @id
+     pronouns String @db.VarChar(60)
+     bio String @db.VarChar(255)
+}

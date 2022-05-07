@@ -11,10 +11,16 @@
                ]
           },
           {
+               "type": "npm",
+               "script": "sync",
+               "label": "Sync Prisma"
+          },
+          {
                "label": "Clean Build",
                "dependsOn": [
                     "Clean Dist",
-                    "tsc: build - tsconfig.json"
+                    "tsc: build - tsconfig.json",
+                    "Sync Prisma"
                ]
           }
      ]
