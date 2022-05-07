@@ -39,7 +39,7 @@
   "scripts": {
     "build": "tsc -p tsconfig.json --clean",
     "start": "node dist/index.js",
-    "sync": "prisma db push",
+    "sync": "prisma db push && prisma generate",
     "lint": "eslint ./src",
     "postinstall": "husky install && npm run sync"
   }

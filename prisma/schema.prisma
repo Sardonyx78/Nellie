@@ -1,3 +1,7 @@
+generator client {
+     provider = "prisma-client-js"
+}
+
 datasource db {
      provider = "mysql"
      url = env("DATABASE_URL")
@@ -7,4 +11,13 @@ model AboutMe {
      userId BigInt @id
      pronouns String @db.VarChar(60)
      bio String @db.VarChar(255)
+}
+
+model StrikeCase {
+     id Int @id @default(autoincrement())
+     userId BigInt
+     reason String
+     timestamp DateTime
+     messageLink String?
+     deleted Boolean @default(false)
 }

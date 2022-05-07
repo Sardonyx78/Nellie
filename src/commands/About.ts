@@ -1,4 +1,4 @@
-import { MessageEmbed } from "discord.js"
+import { GuildMember, MessageEmbed, Permissions } from "discord.js"
 import { client } from "../structures/Client"
 import { prisma } from "../structures/Prisma"
 import { SlashCommand } from "../structures/SlashCommand"
@@ -13,8 +13,11 @@ const AboutMeCommand = new SlashCommand("about", {
      required: true
 }] as const)
 
+AboutMeCommand.permissions = [Permissions.FLAGS.SEND_MESSAGES]
+
 AboutMeCommand.execute = async (args, interaction, ephemeral = false) => {
      const data = await prisma.aboutMe.findUnique({ where: { userId: BigInt(args[0].id) } })
+     const strikes = await prisma.strikeCase.findMany({ where: { userId: BigInt(args[0].id), deleted: false } })
      prisma.$disconnect()
 
      const member = await client.guild.members.fetch(args[0])
@@ -42,6 +45,10 @@ AboutMeCommand.execute = async (args, interaction, ephemeral = false) => {
 
      embed.addField(`Roles [${member.roles.cache.size - 1}]`, member.roles.cache.filter(x => x.id !== client.guild.id).map(x => `<@&${x.id}>`).join(" "), false)
 
+     if (strikes.length > 0 && (interaction.member as GuildMember).permissions.has("MODERATE_MEMBERS")) {
+          embed.addField(`Strikes [${strikes.length}]`, strikes.map(x => `• **${x.reason}** \`${moment(x.timestamp).fromNow()}\` [(#${x.id})](${x.messageLink})`).join("\n"))
+     }
+
      embed.setFooter({
           text: `ID: ${member.user.id}`
      })
@@ -50,7 +57,7 @@ AboutMeCommand.execute = async (args, interaction, ephemeral = false) => {
 
      interaction.reply({
           embeds: [embed],
-          ephemeral
+          ephemeral: ephemeral || (interaction.member as GuildMember).permissions.has("MODERATE_MEMBERS")
      })
 }
 

@@ -9,7 +9,7 @@ const AboutMeEditModal = new MessageModal<"pronouns" | "bio">("AboutMeEditModal"
 
 AboutMeEditModal.handle = async (values, interaction) => {
      interaction.reply({
-          content: `Updated your About Me! Woof-woof!`,
+          content: `Updated your About Me.`,
           ephemeral: true
      })
 

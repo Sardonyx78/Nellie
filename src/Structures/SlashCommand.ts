@@ -28,7 +28,7 @@ export class SlashCommand<TArgs extends ReadonlyArray<ApplicationCommandOption>>
      arguments: TArgs
      permissions?: PermissionResolvable
 
-     static readonly NiceArgumentNames = { "SUB_COMMAND": "Subcommand", "SUB_COMMAND_GROUP": "Subcommandgroup", "STRING": "String", "INTEGER": "Integer", "BOOLEAN": "Boolean", "USER": "User", "CHANNEL": "Channel", "ROLE": "Role", "MENTIONABLE": "Mentionable", "NUMBER": "Number" } as const
+     static readonly NiceArgumentNames = { "SUB_COMMAND": "Subcommand", "SUB_COMMAND_GROUP": "SubcommandGroup", "STRING": "String", "INTEGER": "Integer", "BOOLEAN": "Boolean", "USER": "User", "CHANNEL": "Channel", "ROLE": "Role", "MENTIONABLE": "Mentionable", "NUMBER": "Number" } as const
 
      constructor(name: string, description: { value: string, localization?: Localization }, args: TArgs) {
           this.name = name
@@ -45,10 +45,18 @@ export class SlashCommand<TArgs extends ReadonlyArray<ApplicationCommandOption>>
                description: this.description,
                description_localization: this.description_localization,
                //TODO: Bad coding needs fix
-               options: this.arguments.map(x => ({...x, type: Object.keys(SlashCommand.NiceArgumentNames).findIndex(y => x.type === y) + 1 })),
+               options: this.arguments.map(x => this.serializeOption(x)),
                type: 1, // CHAT_INPUT
                default_member_permissions: this.permissions && Permissions.resolve(this.permissions).toString()
           }
+     }
+
+     serializeOption(opt: ApplicationCommandOption): any {
+          if (opt.type === "SUB_COMMAND_GROUP" || opt.type === "SUB_COMMAND") {
+               opt.options = opt.options.map(x => this.serializeOption(x))
+          }
+
+          return {...opt, type: Object.keys(SlashCommand.NiceArgumentNames).findIndex(y => opt.type === y) + 1}
      }
 
      check(obj: ChatInputApplicationCommandData & { description_localizations?: Localization }): boolean {

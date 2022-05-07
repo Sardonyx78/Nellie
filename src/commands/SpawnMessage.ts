@@ -1,21 +1,17 @@
-import { MessageOptions, Permissions } from "discord.js"
-import SummonAgePronounsRolesInteraction from "../interactions/SummonAgePronounsRoles"
-import SummonSpecificRolesInteraction from "../interactions/SummonSpecificRoles"
+import { MessageEmbed, MessageOptions, Permissions } from "discord.js"
+import SummonAgePronounsRolesInteraction from "../interactions/roles/agePronouns/SummonAgePronounsRoles"
+import SummonSpecificRolesInteraction from "../interactions/roles/specific/SummonSpecificRoles"
 import { SlashCommand } from "../structures/SlashCommand"
 
 const choices: Record<string, { name: string, message: MessageOptions }> = {
      specialRoles: {
-          name: "Special Roles",
+          name: "Roles",
           message: {
-               components: SummonSpecificRolesInteraction.createInstance(),
-               content: "­"
-          }
-     },
-     agePronounsRoles: {
-          name: "Age & Pronoun Roles",
-          message: {
-               components: SummonAgePronounsRolesInteraction.createInstance(),
-               content: "­"
+               components: [...SummonSpecificRolesInteraction.createInstance(), ...SummonAgePronounsRolesInteraction.createInstance()],
+               embeds: [new MessageEmbed({
+                    description: "Click the one of the buttons below to open the roles menu",
+                    color: 0xc9eb7e
+               })]
           }
      }
 }

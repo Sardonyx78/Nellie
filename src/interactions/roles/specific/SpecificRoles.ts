@@ -1,8 +1,8 @@
 import { GuildMember,MessageActionRow, MessageButton, MessageComponentInteraction } from "discord.js";
 import { MessageButtonStyles } from "discord.js/typings/enums";
 import _ from "lodash";
-import { Config } from "../structures/Config";
-import { InteractionApp } from "../structures/InteractionApp";
+import { Config } from "../../../structures/Config";
+import { InteractionApp } from "../../../structures/InteractionApp";
 import { specificRolesMessage } from "./SummonSpecificRoles";
 
 const SpecificRolesInteraction = new InteractionApp<MessageComponentInteraction<"present">, GuildMember>("SpecificRolesInteraction")

@@ -1,11 +1,11 @@
 import { GuildMember, MessageActionRow, MessageButton, MessageComponentInteraction } from "discord.js";
 import { MessageButtonStyles } from "discord.js/typings/enums";
 import _ from "lodash";
-import { Config } from "../structures/Config";
-import { InteractionApp } from "../structures/InteractionApp";
+import { Config } from "../../../structures/Config";
+import { InteractionApp } from "../../../structures/InteractionApp";
 import { agePronounsRolesMessage } from "./SummonAgePronounsRoles";
 
-const AgePronounsRolesInteraction = new InteractionApp<MessageComponentInteraction<"present">, GuildMember>("SummonSpecificRolesInteraction")
+const AgePronounsRolesInteraction = new InteractionApp<MessageComponentInteraction<"present">, GuildMember>("AgePronounsRolesInteraction")
 
 AgePronounsRolesInteraction.handle = async (interaction) => {
      const member = (interaction.member as GuildMember)
@@ -57,7 +57,7 @@ AgePronounsRolesInteraction.createInstance = (member) => {
           value: Config.roles.age.adult,
           emoji: "🔴"
      }].map(x => new MessageButton({
-          customId: `SpecificRolesInteraction-${x.value}`,
+          customId: `AgePronounsRolesInteraction-${x.value}`,
           style: member.roles.cache.has(x.value) ? MessageButtonStyles.SUCCESS : MessageButtonStyles.SECONDARY,
           emoji: x.emoji,
           label: x.label
