@@ -1,5 +1,5 @@
-import { MessageComponentInteraction } from "discord.js";
 import { client } from "./Client";
+import { ModalSubmitInteraction } from "./ModalSubmitInteraction";
 
 export enum MessageModalInputStyle {
      Short = 1,
@@ -71,7 +71,7 @@ export class MessageModalInput {
      }
 }
 
-export class MessageModal<T extends ReadonlyArray<string> = []> {
+export class MessageModal<T extends string> {
      title: string
      inputs: MessageModalInput[] = []
      custom_id?: string
@@ -90,22 +90,22 @@ export class MessageModal<T extends ReadonlyArray<string> = []> {
           return this
      }
 
-     async send(interaction: any, prefilledInfo: Record<string, string> = {}) {
+     async send(interaction: any, prefilledInfo: Record<T, string> = {} as any) {
           await (<any>client).api.interactions(interaction.id, interaction.token).callback.post({
                data: {
                     type: 9,
                     data: {
                          title: this.title,
                          custom_id: this.custom_id,
-                         components: [{
-                              components: this.inputs.map(x => x.serialize(prefilledInfo[x.customId])),
+                         components: this.inputs.map(x => ({
+                              components: [x.serialize(prefilledInfo[x.customId as T])],
                               type: 1
-                         }]
+                         }))
                     }
                },
-               auth: false,
+               auth: false
           });
      }
 
-     handle: (components: { [K in keyof T]: string }, interaction: MessageComponentInteraction) => void
+     handle: (components: Record<T, string>, interaction: ModalSubmitInteraction) => void
 }
