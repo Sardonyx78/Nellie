@@ -1,5 +1,5 @@
 .DS_STORE
 dist
 node_modules
-dev.env
 config-dev.json
+.env
