@@ -6,8 +6,8 @@
 <p align="center">
      <a href="#"><img alt="Node 16.0.0" src="https://img.shields.io/badge/node-%3E%3D%2016.0.0-success?style=for-the-badge"></a>
      <a href="#"><img alt="Written In TypeScript" src="https://img.shields.io/badge/TypeScript-%3E%3D%204.3.0-blue?style=for-the-badge"></a>
-     <a href="LICENSE"><img alt="License" src="https://img.shields.io/github/license/HeartstopperDiscord/Nellie?style=for-the-badge"></a>
-     <a href="#"><img alt="Last Commit" src="https://img.shields.io/github/last-commit/HeartstopperDiscord/Nellie?style=for-the-badge"></a>
+     <a href="LICENSE"><img alt="License" src="https://img.shields.io/github/license/HeartstopperDiscord/Nellie?style=for-the-badge&a"></a>
+     <a href="#"><img alt="Last Commit" src="https://img.shields.io/github/last-commit/HeartstopperDiscord/Nellie?style=for-the-badge&a"></a>
 </p>
 
 A community based open source bot for the Heartstopper discord server
