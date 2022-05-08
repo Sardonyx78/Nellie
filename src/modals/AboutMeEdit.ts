@@ -8,7 +8,7 @@ const AboutMeEditModal = new MessageModal<"pronouns" | "bio">("AboutMeEditModal"
 
 
 AboutMeEditModal.handle = async (values, interaction) => {
-     interaction.reply({
+     await interaction.reply({
           content: `Updated your About Me.`,
           ephemeral: true
      })

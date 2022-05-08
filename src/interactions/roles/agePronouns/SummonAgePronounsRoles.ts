@@ -27,7 +27,7 @@ export const agePronounsRolesMessage = {
 }
 
 SummonAgePronounsRolesInteraction.handle = async (interaction) => {
-     interaction.reply({
+     await interaction.reply({
           components: AgePronounsRolesInteraction.createInstance(interaction.member as GuildMember),
           nonce: interaction.id,
           ...agePronounsRolesMessage

@@ -10,12 +10,12 @@ CaseDeleteConfirmation.handle = async (interaction) => {
      const cmd = interaction.customId.split("-")[1]
 
      if (cmd === "no") {
-          interaction.update({
+          await interaction.update({
                embeds: [new MessageEmbed().setDescription("Cancelled").setColor(0x2f3136)],
                components: []
           })
      } else if (cmd === "delete") {
-          interaction.update({
+          await interaction.update({
                embeds: [new MessageEmbed().setDescription("Deleted").setColor(0x6AB04C)],
                components: []
           })
