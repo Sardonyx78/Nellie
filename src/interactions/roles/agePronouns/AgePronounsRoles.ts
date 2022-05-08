@@ -14,17 +14,17 @@ AgePronounsRolesInteraction.handle = async (interaction) => {
      const components = AgePronounsRolesInteraction.createInstance(interaction.member as GuildMember)
 
      if (!member.roles.cache.has(role)) {
-          member.roles.add(role)
+          await member.roles.add(role)
 
           components.flatMap(x => x.components as MessageButton[]).find(x => x.customId === interaction.customId).setStyle(MessageButtonStyles.SUCCESS)
      }
      else {
-          member.roles.remove(role)
+          await member.roles.remove(role)
 
           components.flatMap(x => x.components as MessageButton[]).find(x => x.customId === interaction.customId).setStyle(MessageButtonStyles.SECONDARY)
      }
 
-     interaction.update({...agePronounsRolesMessage, components})
+     await interaction.update({...agePronounsRolesMessage, components})
 }
 
 AgePronounsRolesInteraction.createInstance = (member) => {
