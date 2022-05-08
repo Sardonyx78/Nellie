@@ -14,12 +14,12 @@ SpecificRolesInteraction.handle = async (interaction) => {
      const components = SpecificRolesInteraction.createInstance(interaction.member as GuildMember)
 
      if (!member.roles.cache.has(role)) {
-          await member.roles.add(role)
+          member.roles.add(role)
 
           components.flatMap(x => x.components as MessageButton[]).find(x => x.customId === interaction.customId).setStyle(MessageButtonStyles.SUCCESS)
      }
      else {
-          await member.roles.remove(role)
+          member.roles.remove(role)
 
           components.flatMap(x => x.components as MessageButton[]).find(x => x.customId === interaction.customId).setStyle(MessageButtonStyles.SECONDARY)
      }
