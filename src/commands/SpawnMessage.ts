@@ -27,7 +27,7 @@ const SpawnMessageCommand = new SlashCommand("spawnmessage", {
 
 SpawnMessageCommand.execute = async (args, interaction) => {
      interaction.channel.send(choices[args[0]].message)
-     await interaction.reply({
+     interaction.reply({
           content: "Done!",
           ephemeral: true
      })

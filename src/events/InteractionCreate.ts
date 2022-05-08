@@ -20,9 +20,9 @@ InteractionCreate.handle = (interaction) => {
           client.contexts.user.get(interaction.commandName)?.handle(interaction)
      }
      /**
-      * `customId` only exists on Button Interactions etc.
+      * `customId` only exists on Button Interactions and etc. 
       *  So by checking if it has the property, we are basically checking if it's a "that type" of interaction
-      *  But typescript believes that this is an "unknown" Interaction, so it says customId will never exist
+      *  But typescript believes that this is an "unknown" Interaction so it says customId will never exist
       */
      //@ts-expect-error `customId` only exists on Button Interactions
      else if (interaction.customId) {

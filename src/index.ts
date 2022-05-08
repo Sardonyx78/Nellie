@@ -11,46 +11,46 @@ import { UserContextCommand } from "./structures/UserContextCommand";
 import path from "path";
 
 /**
- * Load a every js file in a folder recursively
+ * Load a every js file in a folder recursively 
  */
-async function loadRecursive(dir: string, cb: (x: string) => Promise<void>): Promise<any> {
+async function loadRecurive(dir: string, cb: (x: string) => Promise<void>): Promise<any> {
      dir = path.resolve(dir)
-
+     
      return Promise.all((await fs.readdir(dir)).map(async x => {
           const child = path.join(dir, x)
 
-          if ((await fs.stat(child)).isDirectory()) return loadRecursive(child, cb)
+          if ((await fs.stat(child)).isDirectory()) return loadRecurive(child, cb)
           else if (x.endsWith(".js")) return await cb(`.${path.sep}${path.relative(__dirname, child)}`)
      }))
 }
 
 Promise.all([
      // Auto Import all Interactions from /interactions
-     loadRecursive("./dist/interactions", async x => {
+     loadRecurive("./dist/interactions", async x => {
           const interaction = (await import(x)).default as InteractionApp<any>
           client.interactions.set(interaction.typeName, interaction)
      }),
 
      // Auto Import all SlashCommands from /commands
-     loadRecursive("./dist/commands", async x => {
+     loadRecurive("./dist/commands", async x => {
           const cmd = (await import(x)).default as SlashCommand<any>
           client.commands.set(cmd.name, cmd)
      }),
 
      // Auto Import all UserContext from /contexts/user
-     loadRecursive("./dist/contexts/user", async x => {
+     loadRecurive("./dist/contexts/user", async x => {
           const interaction = (await import(x)).default as UserContextCommand
           client.contexts.user.set(interaction.name, interaction)
      }),
 
      // Auto Import all DiscordEvents from /events
-     loadRecursive("./dist/events", async x => {
+     loadRecurive("./dist/events", async x => {
           const event = (await import(x)).default as DiscordEvent<any>
           client.on(event.eventName, event.handle)
      }),
 
      // Auto Import all Modals from /modals
-     loadRecursive("./dist/modals", async x => {
+     loadRecurive("./dist/modals", async x => {
           const cmd = (await import(x)).default as MessageModal<"">
           client.modals.set(cmd.custom_id, cmd)
      })]).then(() => client.login(process.env.DISCORD_TOKEN))

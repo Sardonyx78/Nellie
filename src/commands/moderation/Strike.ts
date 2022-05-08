@@ -92,7 +92,7 @@ StrikeCommand.execute = async (_args, interaction) => {
                .setColor(0xFFBE76)
                .setTimestamp()
 
-          await interaction.reply({
+          interaction.reply({
                embeds: [embed],
                ephemeral: !!interaction.options.getBoolean("hidden", false)
           })
@@ -141,7 +141,7 @@ StrikeCommand.execute = async (_args, interaction) => {
                     .setURL(strike.messageLink)
 
 
-               await interaction.reply({
+               interaction.reply({
                     ephemeral: true,
                     embeds: [embed]
                })
@@ -152,7 +152,7 @@ StrikeCommand.execute = async (_args, interaction) => {
                     })
                }).catch(() => { })
 
-          } else await interaction.reply({
+          } else interaction.reply({
                ephemeral: true,
                embeds: [new MessageEmbed().setColor("RED").setDescription("Couldn't find the case.")]
           })
@@ -166,7 +166,7 @@ StrikeCommand.execute = async (_args, interaction) => {
           if (strike) {
                const user = await client.users.fetch(strike.userId.toString())
 
-               await interaction.reply({
+               interaction.reply({
                     embeds: [new MessageEmbed()
                          .setTitle("❌ Delete this case?")
                          .setFooter({
@@ -181,7 +181,7 @@ StrikeCommand.execute = async (_args, interaction) => {
                     ephemeral: true,
                     components: CaseDeleteConfirmation.createInstance(strike.id.toString())
                })
-          } else await interaction.reply({
+          } else interaction.reply({
                ephemeral: true,
                embeds: [new MessageEmbed().setColor("RED").setDescription("Couldn't find the case.")]
           })

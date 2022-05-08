@@ -13,7 +13,7 @@ EditAboutMeCommand.execute = async (_args, interaction) => {
           }
      })) || { bio: "", pronouns: "" }
 
-     await AboutMeEditModal.send(interaction, data)
+     AboutMeEditModal.send(interaction, data)
 }
 
 export default EditAboutMeCommand
