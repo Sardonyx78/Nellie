@@ -28,7 +28,7 @@ AboutMeCommand.execute = async (args, interaction, ephemeral = false) => {
                name: member.user.tag,
                iconURL: member.avatarURL({ dynamic: true }) || member.user.avatarURL({ dynamic: true })
           })
-          .setThumbnail(member.avatarURL({ dynamic: true }) || member.user.avatarURL({ dynamic: true }))
+          .setThumbnail(member.avatarURL({ dynamic: true }) || member.user.avatarURL({ dynamic: true })) 
 
      if (data) {
           if (data.pronouns.length > 0) {
@@ -55,7 +55,7 @@ AboutMeCommand.execute = async (args, interaction, ephemeral = false) => {
 
      embed.setTimestamp()
 
-     await interaction.reply({
+     interaction.reply({
           embeds: [embed],
           ephemeral: ephemeral || (interaction.member as GuildMember).permissions.has("MODERATE_MEMBERS")
      })
