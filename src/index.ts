@@ -53,7 +53,7 @@ Promise.all([
      loadRecurive("./dist/modals", async x => {
           const cmd = (await import(x)).default as MessageModal<"">
           client.modals.set(cmd.custom_id, cmd)
-     })]).then(() => client.login(process.env.TOKEN))
+     })]).then(() => client.login(process.env.DISCORD_TOKEN))
 
 process.on("unhandledRejection", (reason) => {
      console.error(reason)
