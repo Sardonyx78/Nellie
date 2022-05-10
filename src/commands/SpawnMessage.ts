@@ -1,4 +1,4 @@
-import { MessageEmbed, MessageOptions, Permissions } from "discord.js"
+import {MessageActionRow, MessageButton, MessageEmbed, MessageOptions, Permissions} from "discord.js"
 import SummonAgePronounsRolesInteraction from "../interactions/roles/agePronouns/SummonAgePronounsRoles"
 import SummonSpecificRolesInteraction from "../interactions/roles/specific/SummonSpecificRoles"
 import { SlashCommand } from "../structures/SlashCommand"
@@ -13,6 +13,20 @@ const choices: Record<string, { name: string, message: MessageOptions }> = {
                     description: "Click the one of the buttons below to open the roles menu",
                     color: 0xc9eb7e
                })]
+          }
+     },
+     suggestions: {
+          name: "Suggestions",
+          message: {
+               embeds: [new MessageEmbed({
+                    description: "Click the button below to create a suggestion",
+                    color: 0xc9eb7e
+               })],
+               components: [new MessageActionRow()
+                    .setComponents(new MessageButton()
+                         .setCustomId("SuggestionControlsInteraction-create")
+                         .setStyle("PRIMARY")
+                         .setLabel("Create a suggestion"))]
           }
      }
 }
