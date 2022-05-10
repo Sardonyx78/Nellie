@@ -42,7 +42,7 @@ SpecificRolesInteraction.createInstance = (member) => {
           emoji: "🌧"
      }, {
           label: "This Winter",
-          value: Config.roles.specific.thiswinter,
+          value: Config.roles.specific.thisWinter,
           emoji: "🎄"
      }, {
           label: "Nick and Charlie",
@@ -60,6 +60,10 @@ SpecificRolesInteraction.createInstance = (member) => {
           label: "Loveless",
           value: Config.roles.specific.loveless,
           emoji: "🎭"
+     }, {
+          label: "Events",
+          value: Config.roles.ping.events,
+          emoji: "🔔"
      }].map(x => new MessageButton({
           customId: `SpecificRolesInteraction-${x.value}`,
           style: member.roles.cache.has(x.value) ? MessageButtonStyles.SUCCESS : MessageButtonStyles.SECONDARY,

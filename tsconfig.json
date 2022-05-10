@@ -19,7 +19,9 @@
           "noEmitHelpers": true,
           "importHelpers": true,
           "skipLibCheck": true,
-          "strictNullChecks": false
+          "strictNullChecks": false,
+          "inlineSources": true,
+          "sourceRoot": "/"
      },
      "include": [
           "src/**/**.**"

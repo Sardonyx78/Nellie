@@ -73,7 +73,8 @@ StrikeCommand.execute = async (_args, interaction) => {
                data: {
                     reason,
                     userId: BigInt(user.id),
-                    timestamp: new Date()
+                    adminId: BigInt(interaction.user.id),
+
                }
           })
 
@@ -177,7 +178,7 @@ StrikeCommand.execute = async (_args, interaction) => {
      **Reason:** ${strike.reason}`)
                          .setColor("RED")
                          .setThumbnail(user.avatarURL({ dynamic: true }))
-                         .setTimestamp(strike.timestamp)],
+                         .setTimestamp(strike.createdAt)],
                     ephemeral: true,
                     components: CaseDeleteConfirmation.createInstance(strike.id.toString())
                })

@@ -1,6 +1,6 @@
 {
      "channels": {
-          "admin-log": "EmrysFillThisPls"
+          "admin-log": "483364260114858009"
      },
      "roles": {
           "pronouns": {
@@ -18,11 +18,16 @@
                "spoilers": "483365124753719307",
                "heartstopper": "483367854075281408",
                "solitaire": "483367486524489728",
-               "thiswinter": "483367746776858635",
+               "thisWinter": "483367746776858635",
                "nickNCharlie": "483367788363120643",
                "radioSilence": "483367543361241098",
                "iWasBornForThis": "483367690363207732",
                "loveless": "731573843352748072"
+          },
+          "ping": {
+               "events": "973380486485381131",
+               "karaoke": "973043316931305562",
+               "competitions": "973380789549019136"
           }
      }
 }

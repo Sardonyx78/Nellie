@@ -7,6 +7,11 @@ import { UserContextCommand } from "./UserContextCommand"
 const intents = new Intents()
 intents.add(Intents.FLAGS.GUILDS)
 intents.add(Intents.FLAGS.GUILD_MESSAGES)
+intents.add(Intents.FLAGS.GUILD_MEMBERS)
+intents.add(Intents.FLAGS.GUILD_BANS)
+intents.add(Intents.FLAGS.GUILD_INVITES)
+intents.add(Intents.FLAGS.GUILD_VOICE_STATES)
+intents.add(Intents.FLAGS.DIRECT_MESSAGES)
 
 export const client = new Client({ intents: intents }) as Client & {
      guild: Guild,

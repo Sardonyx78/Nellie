@@ -8,16 +8,18 @@ datasource db {
 }
 
 model AboutMe {
-     userId BigInt @id
-     pronouns String @db.VarChar(60)
-     bio String @db.VarChar(255)
+     userId     BigInt @id
+     pronouns   String @db.VarChar(60)
+     bio        String @db.VarChar(255)
 }
 
 model StrikeCase {
-     id Int @id @default(autoincrement())
-     userId BigInt
-     reason String
-     timestamp DateTime
-     messageLink String?
-     deleted Boolean @default(false)
+     id             Int         @id @default(autoincrement())
+     userId         BigInt
+     adminId        BigInt
+     messageLink    String?
+     reason         String
+     deleted        Boolean     @default(false)
+     createdAt      DateTime    @default(now())
+     updatedAt      DateTime    @updatedAt
 }
