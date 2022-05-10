@@ -23,3 +23,10 @@ model StrikeCase {
      createdAt      DateTime    @default(now())
      updatedAt      DateTime    @updatedAt
 }
+
+model Ticket {
+    id          String  @id
+    topic       String?
+    userId      BigInt
+    resolved    Boolean @default(false)
+}

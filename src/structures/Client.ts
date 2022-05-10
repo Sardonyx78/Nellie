@@ -13,7 +13,7 @@ intents.add(Intents.FLAGS.GUILD_INVITES)
 intents.add(Intents.FLAGS.GUILD_VOICE_STATES)
 intents.add(Intents.FLAGS.DIRECT_MESSAGES)
 
-export const client = new Client({ intents: intents }) as Client & {
+export const client = new Client({ intents: intents, partials: ["CHANNEL"] }) as Client & {
      guild: Guild,
      interactions: Collection<string, InteractionApp<any>>,
      commands: Collection<string, SlashCommand<any>>,
