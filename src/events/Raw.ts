@@ -6,7 +6,7 @@ const Raw = new DiscordEvent("raw" as any)
 
 Raw.handle = async ({ d, t }) => {
      if (t === "INTERACTION_CREATE" && d.type === 5) {
-          const cmd = client.modals.get(d.data.custom_id)
+          const cmd = client.modals.get(d.data.custom_id.split("-")[0])
           if (!cmd) return
 
           const args: Record<string, string> = {}

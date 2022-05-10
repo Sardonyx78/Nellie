@@ -90,13 +90,13 @@ export class MessageModal<T extends string> {
           return this
      }
 
-     async send(interaction: any, prefilledInfo: Record<T, string> = {} as any) {
+     async send(interaction: any, prefilledInfo: Record<T, string> = {} as any, extraData?: string) {
           await (<any>client).api.interactions(interaction.id, interaction.token).callback.post({
                data: {
                     type: 9,
                     data: {
                          title: this.title,
-                         custom_id: this.custom_id,
+                         custom_id: this.custom_id + (extraData ? "-" + extraData : ""),
                          components: this.inputs.map(x => ({
                               components: [x.serialize(prefilledInfo[x.customId as T])],
                               type: 1
