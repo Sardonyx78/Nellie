@@ -35,5 +35,6 @@ yarn-error.log*
 config-dev.json
 
 # IDE
-.idea
+.idea/*
+!.idea/fileTemplates
 .vscode
