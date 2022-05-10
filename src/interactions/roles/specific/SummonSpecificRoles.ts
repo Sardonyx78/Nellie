@@ -15,8 +15,7 @@ export const specificRolesMessage = {
 ☀ - Nick and Charlie
 📻 - Radio Silence
 🎸 - I Was Born For This
-🎭 - Access to LOVELESS chat
-🔔 - Get mentioned when there are events`
+🎭 - Loveless`
      })],
      ephemeral: true
 }

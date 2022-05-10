@@ -2,12 +2,13 @@ import { MessageEmbed, MessageOptions, Permissions } from "discord.js"
 import SummonAgePronounsRolesInteraction from "../interactions/roles/agePronouns/SummonAgePronounsRoles"
 import SummonSpecificRolesInteraction from "../interactions/roles/specific/SummonSpecificRoles"
 import { SlashCommand } from "../structures/SlashCommand"
+import SummonPingRolesInteraction from "../interactions/roles/ping/SummonPingRoles";
 
 const choices: Record<string, { name: string, message: MessageOptions }> = {
      specialRoles: {
           name: "Roles",
           message: {
-               components: [...SummonSpecificRolesInteraction.createInstance(), ...SummonAgePronounsRolesInteraction.createInstance()],
+               components: [...SummonSpecificRolesInteraction.createInstance(), ...SummonAgePronounsRolesInteraction.createInstance(), ...SummonPingRolesInteraction.createInstance()],
                embeds: [new MessageEmbed({
                     description: "Click the one of the buttons below to open the roles menu",
                     color: 0xc9eb7e
