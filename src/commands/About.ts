@@ -46,7 +46,7 @@ AboutMeCommand.execute = async (args, interaction, ephemeral = false) => {
      embed.addField(`Roles [${member.roles.cache.size - 1}]`, member.roles.cache.filter(x => x.id !== client.guild.id).map(x => `<@&${x.id}>`).join(" "), false)
 
      if (strikes.length > 0 && (interaction.member as GuildMember).permissions.has("MODERATE_MEMBERS")) {
-          embed.addField(`Strikes [${strikes.length}]`, strikes.map(x => `• **${x.reason}** \`${moment(x.timestamp).fromNow()}\` [(#${x.id})](${x.messageLink})`).join("\n"))
+          embed.addField(`Strikes [${strikes.length}]`, strikes.map(x => `• **${x.reason}** \`${moment(x.createdAt).fromNow()}\` [(#${x.id})](${x.messageLink})`).join("\n"))
      }
 
      embed.setFooter({
