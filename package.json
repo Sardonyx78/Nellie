@@ -43,5 +43,6 @@
     "sync": "prisma db push && prisma generate",
     "lint": "eslint ./src",
     "postinstall": "husky install"
-  }
+  },
+  "packageManager": "yarn@3.2.0"
 }
