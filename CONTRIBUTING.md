@@ -29,6 +29,9 @@ the ones in your testing Discord server.
 And you're done! You can test your changes with the bot.
 
 > If you want to add an entry to the `config.json` and want a value to be added by the maintainers, just write `Fill this in` as the value.
+ 
+
+> ⚠ DON'T FORGET TO SET YOUR `NODE_ENV` TO `development`
 
 ## Committing your changes
 
