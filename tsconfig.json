@@ -9,7 +9,7 @@
           "moduleResolution": "node",
           "declaration": false,
           "resolveJsonModule": true,
-          "removeComments": false,
+          "removeComments": true,
           "esModuleInterop": true,
           "alwaysStrict": true,
           "pretty": true,
