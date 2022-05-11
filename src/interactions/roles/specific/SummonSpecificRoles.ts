@@ -10,6 +10,7 @@ export const specificRolesMessage = {
           color: 0xc9eb7e,
           description: `👀 - okay with spoilers (access to <#482881827779117056>)
 🌿 - Heartstopper
+🎬 - Heartstopper TV
 🌧 - Solitaire
 🎄 - This Winter
 ☀ - Nick and Charlie

@@ -4,8 +4,8 @@ import {client} from "../structures/Client";
 import {MessageEmbed, TextChannel} from "discord.js";
 import SuggestionControls from "../interactions/suggestions/SuggestionControls";
 
-const SuggestionModal = new MessageModal<"title" | "description">("AboutMeEditModal")
-     .setTitle("Edit About Me")
+const SuggestionModal = new MessageModal<"title" | "description">("CreateSuggestionModal")
+     .setTitle("Create a suggestion")
      .addInput(new MessageModalInput("title").setMaxLength(100).setLabel("Suggestion Title").setPlaceholder("Add this...").setRequired(true))
      .addInput(new MessageModalInput("description").setRequired(true).setMaxLength(255).setStyle(MessageModalInputStyle.Paragraph).setLabel("Description").setPlaceholder("This should be added cause..."))
 
